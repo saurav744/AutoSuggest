@@ -22,6 +22,15 @@ public class AutoSuggestController {
 	@Autowired
 	private CityAutoSuggestor cityAutoSuggestor;
 	
+	
+	@ApiOperation(value = "Home", response = String.class)
+	@GetMapping("/")
+	public String welcome() {
+		String msg = "Welcome, you are awesome!";
+		return msg;
+	}
+	
+	
 	@ApiOperation(value = "Returns auto suggestions for city names", response = List.class)
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "Successfully retrieved suggestions"),
@@ -37,6 +46,6 @@ public class AutoSuggestController {
 			@RequestParam("atmost") String limit) {
 		
 		return cityAutoSuggestor.suggestCities(prefix, Integer.parseInt(limit));
-	}	
+	}
 
 }
