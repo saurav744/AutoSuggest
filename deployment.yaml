@@ -1,16 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: sample-web-app
+  name: autosuggest-app
 spec:
+  selector:
+    matchLabels:
+        app: autosuggest-app
   replicas: 1
   template:
     metadata:
       labels:
-        app: sample-web-app
+        app: autosuggest-app
     spec:
       containers:
-        - image: gcr.io/neon-camp-233207/hello-java:v2
+        - image: gcr.io/neon-camp-233207/auto-suggest:v1
           name: java-app
           env:
             - name: DB_HOST
